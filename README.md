@@ -194,7 +194,7 @@ docker update --restart=always minio
 ```
 #### Reboot the server
 ```bash
-sudo rebooth
+sudo reboot
 ```
 #### After rebooting check if MinIO is running
 ```bash
