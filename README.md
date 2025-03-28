@@ -151,7 +151,7 @@ mc mb node1/filecloud-data
 
 #### Create bucket on **NODE 2**
 ```bash
-mc mb node2/filecloud-dat
+mc mb node2/filecloud-data
 ```
 
 #### Verify the buckets **BOTH NODES**
