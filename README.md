@@ -184,3 +184,19 @@ mc replicate add node1/filecloud-data \
 - Login into the console of **NODE 1** using *admin* credentials.
 - Object Browser -> filecloud-data.
 - Check if the file uploaded from **NODE 1** bucket is present in **NODE 2** bucket.
+
+# Keeping the Services Running
+- Since we are using Docker, it is not required to run these services as system services using systemd setup
+- The following commands are helpful for keeping the MinIO services on both nodes.
+#### Enable automatic restart
+```bash
+docker update --restart=always minio
+```
+#### Reboot the server
+```bash
+sudo rebooth
+```
+#### After rebooting check if MinIO is running
+```bash
+docker ps
+```
