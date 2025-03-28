@@ -1,4 +1,4 @@
-# 2 Node Setup with MinIO
+# 2 Node Replication Setup with MinIO
 
 # Overview
 
