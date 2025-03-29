@@ -7,3 +7,12 @@ This setup integrates **FileCloud** with a **highly available MinIO object stora
 
 #### Then setup FileCloud
 [FileCloud setup](FileCloud.md)
+
+#### It should be looking like this
+![arch](assets/sa.png)
+
+##### Contributors
+- [@Nilay Tayade](https://github.com/nilaytayde)
+- [@Pranav Kolte](https://github.com/Pranavkolte23)
+- [@Shreyash Dhas](https://github.com/shreyashdhas0604)
+- [@Varad Deokar](https://github.com/varad0710)
