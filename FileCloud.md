@@ -8,8 +8,7 @@
 # Prerequisites
 - Go to [Community Edition of Filecloud](https://ce.filecloud.com/) and register yourself.
 - After registration go to [Download Server](https://portal.getfilecloud.com/ui/user/index.html#/sites/trial/community).
-- Download server for Docker.
-- Also generate the License and download it.
+- Generate the License and download it.
 
 # Setup
 ## On **NODE 1**
@@ -54,17 +53,83 @@ cd /var/www/html/config
 vi cloudconfig.php
 ```
 - Press **i** to enter insert mode.
-- 
+- Look for a piece of code where 
+```bash
+// Storage implementation 'local' or 'openstack' or 'amazons3'
+define("TONIDOCLOUD_STORAGE_IMPLEMENTATION", "local");
+```
+- Change it to
+```bash
+define("TONIDOCLOUD_STORAGE_IMPLEMENTATION", "amazons3");
+```
 - Press **Esc**, then type **:wq** to save and exit.
 
 #### Set the amazons3storageconfig
 - Run this command in the same directory
 ```bash
-cp
+cp amazons3storageconfig-sample.php amazons3storageconfig.php
 ```
 ## Access Key generation on MinIO Dashboard
+- Go to the console of MinIO of Node 1.
+- Access Key -> Create access key.
+- Enable JSON Policy and copy
+```bash
+{
+
+    "Version": "2012-10-17",
+
+    "Statement": [
+
+                    {
+
+                        "Effect": "Allow",
+
+                        "Action": [
+
+                                "s3:CreateBucket",
+
+                                "s3:DeleteObject",
+
+                                "s3:GetObject",
+
+                                "s3:ListBucket",
+
+                                "s3:PutObject"
+
+                        ],
+
+                        "Resource": [
+
+                                "arn:aws:s3:::bucketname/*"
+
+                        ]
+
+                    }
+
+                ]
+
+}
+```
+- Change the bucket name to *filecloud-data*
+- Create and Download the Access_key credentials
 
 ## MinIO setup on Filecloud Dashboard
+- Filecloud admin -> Settings -> Storage.
+- You will have storage settings enabled for S3.
+- Fill in the required details
+```bash
+Access_key : <Your access key>
+Secret_key : <Your secret key>
+S3_bucket_name : <Your bucket name>
+URL_endpoint : <http://NODE1_PRIVATE_IP:9000>
+```
+- Save it.
 
 ## User creation
+- Filecloud admin -> Users -> Create user
+- After creating the user, Login via user credentials on 
+```bash
+http://<NODE1_PUBLIC_IP>
+```
+- Let's hope for the best.
 
